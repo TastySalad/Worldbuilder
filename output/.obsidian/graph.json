@@ -1,0 +1,72 @@
+{
+  "collapse-filter": false,
+  "search": "-tag:#type/root ",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#type/region",
+      "color": {
+        "a": 1,
+        "rgb": 6832664
+      }
+    },
+    {
+      "query": "tag:#type/character",
+      "color": {
+        "a": 1,
+        "rgb": 11752160
+      }
+    },
+    {
+      "query": "tag:#type/city",
+      "color": {
+        "a": 1,
+        "rgb": 5422560
+      }
+    },
+    {
+      "query": "tag:#type/faction",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "tag:#type/root",
+      "color": {
+        "a": 1,
+        "rgb": 16777215
+      }
+    },
+    {
+      "query": "tag:#type/phenomena",
+      "color": {
+        "a": 1,
+        "rgb": 14701199
+      }
+    },
+    {
+      "query": "tag:#type/lore  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": false,
+  "centerStrength": 0.479166666666667,
+  "repelStrength": 13.9583333333333,
+  "linkStrength": 0.755208333333333,
+  "linkDistance": 167,
+  "scale": 0.8647700342637556,
+  "close": false
+}

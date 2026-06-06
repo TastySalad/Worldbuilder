@@ -1,0 +1,5 @@
+# Oasis_Coast
+
+[[Oasis_Coast]]: A narrow, verdant ribbon of life carved into the western edge of [[The_Glimmering_Wastes]], where the vast, sun-scorched sands finally yield to the cool embrace of the ocean. This unique region is characterized by a surprising abundance of freshwater springs, lush vegetation, and small, navigable rivers that snake their way to the sea. Its remarkable fertility is largely attributed to the looming presence of the [[Dragon's_Teeth]] mountain range just inland, which acts as a natural condenser for moisture-laden sea winds. The [[Dragon's_Teeth]] force moisture-laden winds from the sea upwards, causing precipitation that feeds subterranean aquifers and surface streams, thereby sustaining the life of the coastal region. Along the [[Oasis_Coast]], these aquifers are primarily fed by precipitation condensed by the [[Dragon's_Teeth]], emerging as life-giving springs. The [[Oasis_Coast]] serves as the primary holdings for [[The Sand Sovereignty]], thriving on fishing, limited agriculture, and vital trade routes that hug this hospitable corridor, avoiding the dangers of the desert interior.
+
+#type/region

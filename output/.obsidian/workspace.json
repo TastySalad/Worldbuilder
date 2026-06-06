@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "1b51c5eb1d835ced",
+    "type": "split",
+    "children": [
+      {
+        "id": "23aaaa7d1e4143f7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "98b6a23ff36871b3",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4e30636640a83947",
+    "type": "split",
+    "children": [
+      {
+        "id": "2999270908921953",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e42f91161535579",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "876374bf1f4606ab",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#type/region",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "54d54fd2f747d7c7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "958e205067884a1c",
+    "type": "split",
+    "children": [
+      {
+        "id": "57fc7d5f6d892069",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "852072741e7a3f74",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "3864e963077021dd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "ef6bd7b649174b24",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "75ec1966b24d57d0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "8b547fe1c8dee484",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "98b6a23ff36871b3",
+  "lastOpenFiles": [
+    "Oasis_Coast.md",
+    "Dragon's_Teeth.md",
+    "The_Glimmering_Wastes.md",
+    "Sandworm.md",
+    "temp.md",
+    "Mine-Town_Gamma.md",
+    "world_chronicle.md",
+    "Serpent's_Cleft.md",
+    "Aqua_Magna_Outpost.md",
+    "Dust_Storms.md",
+    "Glimmerdust.md",
+    "The_Hive_of_the_Silent_Sands.md",
+    "Barren_Peaks.md",
+    "The Glimmering Wastes.md",
+    "The_Known_World.md",
+    "Underground_Aquifers.md",
+    "Ancient_Ruins.md",
+    "The_Verdant_Mire.md",
+    "D&D_magical_forest_and_swamp_hybrid.md",
+    "The_Sand_Sovereignty.md",
+    "Acid_Rain.md",
+    "The Sandworm Nursery.md",
+    "Karak.md",
+    "Expansion.md",
+    "2026-06-05.md"
+  ]
+}
