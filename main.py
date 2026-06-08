@@ -52,8 +52,19 @@ def normalize_wiki_links(text: str) -> str:
         if norm_target in norm_map:
             resolved_target = norm_map[norm_target]
         else:
-            # Fallback: standardize new nodes with underscores
-            resolved_target = target.strip().replace(" ", "_")
+            # Fallback: check for plurals (s/es)
+            singular_target = None
+            if norm_target.endswith("es") and norm_target[:-2] in norm_map:
+                singular_target = norm_map[norm_target[:-2]]
+            elif norm_target.endswith("s") and norm_target[:-1] in norm_map:
+                singular_target = norm_map[norm_target[:-1]]
+            
+            if singular_target:
+                resolved_target = singular_target
+                alias = alias or target # Preserve plural text as alias if not already aliased
+            else:
+                # Fallback: standardize new nodes with underscores
+                resolved_target = target.strip().replace(" ", "_")
             
         if alias:
             return f"[[{resolved_target}|{alias}]]"
@@ -111,9 +122,15 @@ def read_chronicle() -> str:
 def update_chronicle(new_facts: str):
     ensure_chronicle()
     if not new_facts.strip(): return
+    
+    # Normalize links before processing
+    normalized_facts = normalize_wiki_links(new_facts.strip())
+    
     existing = read_chronicle()
-    if new_facts.strip() in existing: return
-    with open(CHRONICLE_PATH, "a", encoding="utf-8") as f: f.write(f"\n\n### New Developments\n{new_facts}")
+    if normalized_facts in existing: return
+    
+    with open(CHRONICLE_PATH, "a", encoding="utf-8") as f: 
+        f.write(f"\n\n### New Developments\n{normalized_facts}")
 
 # 5. Agent State
 class PendingLink(TypedDict):
@@ -310,6 +327,15 @@ def migrate_assets(mode: str = "isolated"):
     output_dir = "output"
     if not os.path.exists(output_dir): return
     
+    # Dedicated Chronicle Scrub: Clean broken links in the master ledger
+    if os.path.exists(CHRONICLE_PATH):
+        print("--- SCRUBBING CHRONICLE: Normalizing wiki-links ---")
+        with open(CHRONICLE_PATH, "r", encoding="utf-8") as f:
+            chronicle_text = f.read()
+        normalized_chronicle = normalize_wiki_links(chronicle_text)
+        with open(CHRONICLE_PATH, "w", encoding="utf-8") as f:
+            f.write(normalized_chronicle)
+
     updated_count = 0
     files = [f for f in os.listdir(output_dir) if f.endswith(".md") and f not in ["world_chronicle.md", "temp.md"]]
     chronicle = read_chronicle()

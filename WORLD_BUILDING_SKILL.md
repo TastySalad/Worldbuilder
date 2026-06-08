@@ -8,6 +8,8 @@ Every terminal command you execute must strictly respect the world's structural 
 3. **#type/character**: Must possess a parent city, or be explicitly declared as a "Wanderer" tethered to a broader region.
 4. **#type/faction**: Must explicitly declare its base of operations (cities or an entire region).
 
+**Graph Integrity & Link Normalization:** All generated Obsidian wiki-links must target singular entities where possible to avoid shadow nodes. Furthermore, EVERY piece of new content, including appending facts to the world chronicle, MUST be sanitized through the `normalize_wiki_links()` function before writing to disk.
+
 # MODE SELECTION MATRIX
 Analyze the user's prompt to choose the exact parameter configuration:
 - **exploratory** (Default): For creating brand-new concepts that expand the world graph. Use this to grow the "uncreated" list.
