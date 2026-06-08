@@ -10,11 +10,11 @@ Seasonal Patterns:
 Northern Hemisphere: Distinct four seasons: cold, snowy winters; mild, wet springs; warm, moderate summers; cool, crisp autumns. Extreme north experiences prolonged winters and short, cool summers.
 Southern Hemisphere: Less pronounced seasonal shifts in tropical and arid zones; temperate zones mirror northern hemisphere but with reversed timing.
 Equatorial Regions: Consistently warm with wet and dry seasons rather than distinct temperature-based seasons.
-Atmospheric Phenomena: Regular storm systems along [[The Azure Coast]] and over [[The Azure Sea]], monsoonal rains in parts of the [[Southern Wilds]], dust storms in [[The Shifting Sands Desert]], Aurora Borealis visible in [[The Frozen Northlands]].
+Atmospheric Phenomena: Regular storm systems along [[The_Azure_Coast]] and over [[The_Azure_Sea]], monsoonal rains in parts of the [[Southern_Wilds]], dust storms in [[The_Shifting_Sands_Desert]], Aurora Borealis visible in [[The_Frozen_Northlands]].
 
 **Atmosphere:**
 Composition: Standard Earth-like atmosphere (Nitrogen, Oxygen, Argon, CO2, etc.).
-Pressure Systems: Complex high and low-pressure systems driven by solar radiation and the [[Spine of the World]] mountain range, influencing global weather patterns.
+Pressure Systems: Complex high and low-pressure systems driven by solar radiation and the [[Spine_of_the_World]] mountain range, influencing global weather patterns.
 Wind Currents: Dominant westerlies in the temperate zones, trade winds near the equator, and polar easterlies in the far north. Mountain ranges create significant rain shadows and localized wind effects.
 
 #type/root

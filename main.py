@@ -17,30 +17,47 @@ llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 2. Utility: Bulletproof Link Normalization
 def normalize_wiki_links(text: str) -> str:
-    """Cross-references [[wiki-links]] against actual filenames in output/ and forces exact matches using alphanumeric normalization."""
+    """Cross-references [[wiki-links]] against actual filenames in output/ and forces exact matches using alphanumeric normalization and alias handling."""
     output_dir = "output"
     if not os.path.exists(output_dir):
         return text
     
-    # Get all markdown filenames (without .md)
-    existing_files = [f.replace(".md", "") for f in os.listdir(output_dir) if f.endswith(".md")]
+    # 1. Build a Clean Alphanumeric Dictionary
+    existing_files = [f for f in os.listdir(output_dir) if f.endswith(".md")]
     
-    # Map alphanumeric-only versions to exact filenames
     def alpha_norm(s: str) -> str:
-        return re.sub(r'[^a-zA-Z0-9]', '', s).lower()
+        # Strip .md if it exists, remove non-alphanumeric, and lowercase
+        base = s[:-3] if s.lower().endswith(".md") else s
+        return re.sub(r'[^a-zA-Z0-9]', '', base).lower()
     
-    norm_map = {alpha_norm(f): f for f in existing_files}
+    # Map alphanumeric key to EXACT base filename (without .md)
+    norm_map = {}
+    for f in existing_files:
+        base_name = f[:-3] # Remove .md
+        norm_map[alpha_norm(base_name)] = base_name
     
+    # 2. Parse Links Safely (Handling Aliases)
     def replacement(match):
-        link_name = match.group(1)
-        norm_name = alpha_norm(link_name)
+        raw_inner = match.group(1)
         
-        # If the alphanumeric version matches an existing file, use the exact filename
-        if norm_name in norm_map:
-            return f"[[{norm_map[norm_name]}]]"
+        # Split target and alias
+        if "|" in raw_inner:
+            target, alias = raw_inner.split("|", 1)
+        else:
+            target, alias = raw_inner, None
+            
+        # 3. Resolve and Reconstruct
+        norm_target = alpha_norm(target)
         
-        # Otherwise, keep original link but ensure underscore consistency as a fallback
-        return f"[[{link_name}]]"
+        if norm_target in norm_map:
+            resolved_target = norm_map[norm_target]
+        else:
+            # Fallback: standardize new nodes with underscores
+            resolved_target = target.strip().replace(" ", "_")
+            
+        if alias:
+            return f"[[{resolved_target}|{alias}]]"
+        return f"[[{resolved_target}]]"
 
     return re.sub(r"\[\[(.*?)\]\]", replacement, text)
 
