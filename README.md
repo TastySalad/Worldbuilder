@@ -79,9 +79,9 @@ Each note gets a `#type/...` tag (e.g. `#type/region`, `#type/city`) and normali
 
 ## The skill (`WORLD_BUILDING_SKILL.md`)
 
-[`WORLD_BUILDING_SKILL.md`](WORLD_BUILDING_SKILL.md) is a Cursor agent skill that translates natural-language requests into the correct `main.py` commands. It encodes the hierarchy rules, mode selection, and command syntax so you can say things like *"Add a shady tavern owner named Barnaby to Arrakeen Outpost"* instead of memorizing flags.
+[`WORLD_BUILDING_SKILL.md`](WORLD_BUILDING_SKILL.md) is not a Cursor agent skill (he lied I created it to gemini CLI) that translates natural-language requests into the correct `main.py` commands. It encodes the hierarchy rules, mode selection, and command syntax so you can say things like *"Add a shady tavern owner named Barnaby to Arrakeen Outpost"* instead of memorizing flags.
 
-### Using the skill in Cursor
+### Using the skill in Cursor (or in general)
 
 **Option A — Reference in chat**
 
