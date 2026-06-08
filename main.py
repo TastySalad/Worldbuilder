@@ -30,11 +30,20 @@ def normalize_wiki_links(text: str) -> str:
         base = s[:-3] if s.lower().endswith(".md") else s
         return re.sub(r'[^a-zA-Z0-9]', '', base).lower()
     
+    def fuzzy_norm(s: str) -> str:
+        # Lowercase, remove non-alphanumeric, and strip trailing s/es
+        scrubbed = alpha_norm(s)
+        if scrubbed.endswith("es"): return scrubbed[:-2]
+        if scrubbed.endswith("s"): return scrubbed[:-1]
+        return scrubbed
+
     # Map alphanumeric key to EXACT base filename (without .md)
     norm_map = {}
+    fuzzy_map = {}
     for f in existing_files:
         base_name = f[:-3] # Remove .md
         norm_map[alpha_norm(base_name)] = base_name
+        fuzzy_map[fuzzy_norm(base_name)] = base_name
     
     # 2. Parse Links Safely (Handling Aliases)
     def replacement(match):
@@ -52,16 +61,12 @@ def normalize_wiki_links(text: str) -> str:
         if norm_target in norm_map:
             resolved_target = norm_map[norm_target]
         else:
-            # Fallback: check for plurals (s/es)
-            singular_target = None
-            if norm_target.endswith("es") and norm_target[:-2] in norm_map:
-                singular_target = norm_map[norm_target[:-2]]
-            elif norm_target.endswith("s") and norm_target[:-1] in norm_map:
-                singular_target = norm_map[norm_target[:-1]]
+            # Aggressive Fuzzy Fallback: lowercase, strip non-alpha, strip plurals
+            fuzzy_target = fuzzy_norm(target)
             
-            if singular_target:
-                resolved_target = singular_target
-                alias = alias or target # Preserve plural text as alias if not already aliased
+            if fuzzy_target in fuzzy_map:
+                resolved_target = fuzzy_map[fuzzy_target]
+                alias = alias or target # Preserve original text as alias
             else:
                 # Fallback: standardize new nodes with underscores
                 resolved_target = target.strip().replace(" ", "_")
