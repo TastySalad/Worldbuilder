@@ -1,0 +1,17 @@
+# Barren_Peaks
+
+## Barren Peaks
+
+    **Geography:**
+    The Barren Peaks are a formidable mountain range situated in the northern reaches of The Known World. Characterized by jagged, snow-capped summits and deep, precipitous valleys, the range forms a natural barrier, separating the northern tundra from the more temperate central plains. The rock formations are predominantly granite and basalt, indicative of ancient volcanic activity and subsequent tectonic uplift. Glacial erosion has carved out numerous cirques, arêtes, and U-shaped valleys, and vast moraines dot the lower slopes. While largely devoid of significant vegetation at higher altitudes, hardy alpine grasses, mosses, and lichen cling to sheltered areas. Scattered, stunted pine forests can be found in the lower, more protected valleys, often leading to hidden, isolated lakes fed by glacial meltwater. The peaks themselves are largely impassable, with only a few treacherous passes known, most of which are only viable during the brief summer months. One such critical route, known as The Gauntlet, connects the Barren Peaks to The Glimmering Wastes, serving as a vital, albeit challenging, thoroughfare.
+
+    **Climate:**
+    The Barren Peaks experience an extreme alpine climate, dominated by long, brutally cold winters and short, cool summers. Winter temperatures routinely plummet far below freezing, often accompanied by severe blizzards and high winds that create dangerous whiteout conditions. Snowfall is heavy and persistent, accumulating to significant depths, especially at higher elevations, where permanent snowfields and small glaciers persist year-round. Summers offer a brief respite, with temperatures rising above freezing, allowing for some snowmelt and revealing rocky scree slopes. However, even in summer, nighttime temperatures can drop significantly, and frost is common. Precipitation, while primarily snow in winter, can manifest as cold rain or sleet during the warmer months. The high altitude and rugged terrain create localized microclimates, with valleys sometimes experiencing slightly milder conditions than exposed ridges.
+
+    **Large-Scale Atmosphere:**
+    The atmospheric conditions over the Barren Peaks are heavily influenced by their elevation and their position as a major meteorological barrier within The Known World. Westerly prevailing winds, often laden with moisture from distant oceans, are forced upwards by the mountain range, leading to significant orographic lift. This process causes the air to cool, condense, and precipitate heavily on the windward (western) slopes, resulting in the deep snowpacks. The leeward (eastern) side of the range experiences a rain shadow effect, leading to drier, often colder conditions as the air descends and warms adiabatically. High-altitude jet streams frequently traverse the region, contributing to the strong, persistent winds and rapid weather changes. The thin atmosphere at these elevations results in intense solar radiation during clear days, contrasting sharply with the rapid heat loss at night. The Barren Peaks act as a significant weather generator, influencing weather patterns for hundreds of miles downwind, particularly in The Known World's central regions.
+
+    ENTITY: Barren Peaks (region)
+    PARENT: The Known World
+
+#type/region

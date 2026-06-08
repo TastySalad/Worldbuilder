@@ -15,15 +15,17 @@ load_dotenv()
 # 1. Setup the LLM
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
+VAULT_DIR = "output"
+def get_chronicle_path(): return os.path.join(VAULT_DIR, "world_chronicle.md")
+
 # 2. Utility: Bulletproof Link Normalization
 def normalize_wiki_links(text: str) -> str:
-    """Cross-references [[wiki-links]] against actual filenames in output/ and forces exact matches using alphanumeric normalization and alias handling."""
-    output_dir = "output"
-    if not os.path.exists(output_dir):
+    """Cross-references [[wiki-links]] against actual filenames in VAULT_DIR and forces exact matches using alphanumeric normalization and alias handling."""
+    if not os.path.exists(VAULT_DIR):
         return text
     
     # 1. Build a Clean Alphanumeric Dictionary
-    existing_files = [f for f in os.listdir(output_dir) if f.endswith(".md")]
+    existing_files = [f for f in os.listdir(VAULT_DIR) if f.endswith(".md")]
     
     def alpha_norm(s: str) -> str:
         # Strip .md if it exists, remove non-alphanumeric, and lowercase
@@ -80,8 +82,8 @@ def normalize_wiki_links(text: str) -> str:
 # 3. Hardened File-Writing Tool
 def write_world_asset(filename: str, title: str, content: str, entity_type: str, mode: str = "exploratory"):
     """Writes or overwrites markdown content with strict taxonomy tags and normalization."""
-    os.makedirs("output", exist_ok=True)
-    path = os.path.join("output", f"{filename}.md")
+    os.makedirs(VAULT_DIR, exist_ok=True)
+    path = os.path.join(VAULT_DIR, f"{filename}.md")
     
     sanitized_type = entity_type.strip().lower().replace(" ", "_").replace("#", "").replace("type/", "")
     tag = f"#type/{sanitized_type}"
@@ -108,21 +110,21 @@ def get_missing_links(links: List[dict]) -> List[dict]:
     missing = []
     for link in links:
         filename = link["name"].replace(" ", "_").replace("/", "_")
-        if not os.path.exists(os.path.join("output", f"{filename}.md")):
+        if not os.path.exists(os.path.join(VAULT_DIR, f"{filename}.md")):
             missing.append(link)
     return missing
 
 # 4. Global Chronicle Management (QUARANTINED)
-CHRONICLE_PATH = "output/world_chronicle.md"
 def ensure_chronicle():
-    os.makedirs("output", exist_ok=True)
-    if not os.path.exists(CHRONICLE_PATH):
-        with open(CHRONICLE_PATH, "w", encoding="utf-8") as f:
+    os.makedirs(VAULT_DIR, exist_ok=True)
+    path = get_chronicle_path()
+    if not os.path.exists(path):
+        with open(path, "w", encoding="utf-8") as f:
             f.write("# Global World Chronicle\n\nMaster ledger of established facts, factions, history, and regional states.\n")
 
 def read_chronicle() -> str:
     ensure_chronicle()
-    with open(CHRONICLE_PATH, "r", encoding="utf-8") as f: return f.read()
+    with open(get_chronicle_path(), "r", encoding="utf-8") as f: return f.read()
 
 def update_chronicle(new_facts: str):
     ensure_chronicle()
@@ -134,7 +136,7 @@ def update_chronicle(new_facts: str):
     existing = read_chronicle()
     if normalized_facts in existing: return
     
-    with open(CHRONICLE_PATH, "a", encoding="utf-8") as f: 
+    with open(get_chronicle_path(), "a", encoding="utf-8") as f: 
         f.write(f"\n\n### New Developments\n{normalized_facts}")
 
 # 5. Agent State
@@ -194,7 +196,7 @@ def supervisor(state: AgentState):
     
     def check_parent_exists(name: str) -> bool:
         if name == "The Known World": return True
-        return os.path.exists(os.path.join("output", f"{name.replace(' ', '_')}.md"))
+        return os.path.exists(os.path.join(VAULT_DIR, f"{name.replace(' ', '_')}.md"))
 
     if decision in ["character", "faction", "phenomena", "city"]:
         if not check_parent_exists(parent_name):
@@ -239,7 +241,8 @@ def generic_builder(state: AgentState):
     else:
         system += f"Strict Requirement: Anchor this entity within [[{parent}]]. "
         
-    system += "Always use [[wiki-links]] for established entities. Ensure links match existing filenames exactly."
+    system += "Always use [[wiki-links]] for established entities. Ensure links match existing filenames exactly. "
+    system += "Output your generated response in clean, readable Markdown format with clear headers (##), bold text for emphasis, and bulleted lists. NEVER output JSON. NEVER wrap your response in a markdown code block (```)."
     
     if state.get("inspiration_context"):
         system += f"\n\nTHEMATIC GUIDELINES:\n{state['inspiration_context']}"
@@ -266,7 +269,7 @@ def continuity_validator(state: AgentState):
         "Review the NEW WORLD CONTENT against the provided reference lore. "
         "Your output must follow this rigid XML structural pattern:\n"
         "1. Any major historical developments or new facts to be added to the chronicle must be enclosed in <chronicle_append> tags.\n"
-        "2. The clean, validated, and updated asset description must be enclosed in <validated_content> tags.\n\n"
+        "2. The clean, validated, and updated asset description must be enclosed in <validated_content> tags. The content inside these tags MUST be strictly formatted as clean Markdown. DO NOT output JSON. DO NOT wrap the content in markdown code blocks.\n\n"
         "Rules:\n"
         "- Resolve any contradictions found in the new content.\n"
         "- Ensure the asset remains anchored in its parent context.\n"
@@ -329,24 +332,24 @@ app = workflow.compile()
 def migrate_assets(mode: str = "isolated"):
     """Audits and consolidates the world state on disk with XML parsing and failsafes."""
     print(f"\n--- Starting Core Systems Audit (Mode: {mode}) ---")
-    output_dir = "output"
-    if not os.path.exists(output_dir): return
+    if not os.path.exists(VAULT_DIR): return
     
     # Dedicated Chronicle Scrub: Clean broken links in the master ledger
-    if os.path.exists(CHRONICLE_PATH):
+    chronicle_path = get_chronicle_path()
+    if os.path.exists(chronicle_path):
         print("--- SCRUBBING CHRONICLE: Normalizing wiki-links ---")
-        with open(CHRONICLE_PATH, "r", encoding="utf-8") as f:
+        with open(chronicle_path, "r", encoding="utf-8") as f:
             chronicle_text = f.read()
         normalized_chronicle = normalize_wiki_links(chronicle_text)
-        with open(CHRONICLE_PATH, "w", encoding="utf-8") as f:
+        with open(chronicle_path, "w", encoding="utf-8") as f:
             f.write(normalized_chronicle)
 
     updated_count = 0
-    files = [f for f in os.listdir(output_dir) if f.endswith(".md") and f not in ["world_chronicle.md", "temp.md"]]
+    files = [f for f in os.listdir(VAULT_DIR) if f.endswith(".md") and f not in ["world_chronicle.md", "temp.md"]]
     chronicle = read_chronicle()
     
     for filename in files:
-        path = os.path.join(output_dir, filename)
+        path = os.path.join(VAULT_DIR, filename)
         if not os.path.exists(path): continue
         title = filename.replace(".md", "")
         with open(path, "r", encoding="utf-8") as f: raw_content = f.read()
@@ -424,7 +427,8 @@ def run_expansion(n: int, mode: str = "exploratory"):
     ensure_chronicle()
     chronicle = read_chronicle()
     _, pending = write_world_asset("temp", "temp", chronicle, "lore", mode="exploratory")
-    if os.path.exists("output/temp.md"): os.remove("output/temp.md")
+    temp_path = os.path.join(VAULT_DIR, "temp.md")
+    if os.path.exists(temp_path): os.remove(temp_path)
     
     state = {"messages": [], "current_region": "The Known World", "pending_links": pending, "inspiration_context": "", "generation_mode": mode}
     for i in range(n):
@@ -449,7 +453,10 @@ if __name__ == "__main__":
     parser.add_argument("--inspiration", type=str); parser.add_argument("--expand", type=int)
     parser.add_argument("--mode", choices=["exploratory", "isolated", "fill"], default="exploratory")
     parser.add_argument("--migrate", action="store_true")
+    parser.add_argument("--vault", type=str, default="output", help="Target vault folder")
     args = parser.parse_args()
+    
+    VAULT_DIR = args.vault
     
     if args.migrate: migrate_assets(mode=args.mode)
     for t in types:

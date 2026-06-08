@@ -11,13 +11,32 @@
             "id": "98b6a23ff36871b3",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Serpent's_Cleft.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Serpent's_Cleft"
+            }
+          },
+          {
+            "id": "9b41a68fab81417c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mine-Town_Gamma.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Mine-Town_Gamma"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -176,32 +195,33 @@
       "bases:Create new base": false
     }
   },
-  "active": "98b6a23ff36871b3",
+  "active": "9b41a68fab81417c",
   "lastOpenFiles": [
-    "world_chronicle.md",
-    "The_Glimmering_Wastes.md",
-    "Barren_Peaks.md",
-    "Oasis_Coast.md",
-    "Dragon's_Teeth.md",
-    "Sandworm.md",
-    "temp.md",
+    "The_Sand_Scorpions.md",
     "Mine-Town_Gamma.md",
     "Serpent's_Cleft.md",
-    "Aqua_Magna_Outpost.md",
-    "Dust_Storms.md",
     "Glimmerdust.md",
+    "Untitled.canvas",
+    "Brightwater_Trade_Hub.md",
+    "Barren_Peaks.md",
+    "Dust_Storms.md",
+    "Dragon's_Teeth.md",
+    "Aqua_Magna_Outpost.md",
+    "Oasis_Coast.md",
+    "Sandworm.md",
+    "The_Cragged_Maw.md",
+    "The_Gauntlet.md",
+    "The_Glimmering_Wastes.md",
     "The_Hive_of_the_Silent_Sands.md",
-    "The Glimmering Wastes.md",
     "The_Known_World.md",
+    "world_chronicle.md",
+    "temp.md",
+    "The Glimmering Wastes.md",
     "Underground_Aquifers.md",
     "Ancient_Ruins.md",
     "The_Verdant_Mire.md",
     "D&D_magical_forest_and_swamp_hybrid.md",
     "The_Sand_Sovereignty.md",
-    "Acid_Rain.md",
-    "The Sandworm Nursery.md",
-    "Karak.md",
-    "Expansion.md",
-    "2026-06-05.md"
+    "Acid_Rain.md"
   ]
 }

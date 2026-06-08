@@ -30,6 +30,7 @@ Trigger the engine via: `python C:\Users\Salad\world-builder\main.py [flags]`
 - `--mode [exploratory|isolated|fill]`: The execution logic (Default: exploratory).
 - `--inspiration "X"`: Dynamic research reference (e.g., "Kenshi", "Lovecraft").
 - `--expand N`: Triggers autonomous generation for N missing links.
+- `--vault "folder_name"`: Specifies the target Obsidian vault directory (Default: output).
 
 # AUTOMATED COMMAND MAPPING EXAMPLES
 
